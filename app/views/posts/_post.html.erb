@@ -1,0 +1,29 @@
+<div id="<%= dom_id post %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Title: <%= post.title %> </strong>
+  </p>
+
+  <% if action_name != "index" %>
+    <p class="my-5" id="my_5">
+      <strong class="block font-medium mb-1">Content:</strong>
+      <%= post.content %>
+    </p>
+  <% end %>
+
+  <% if action_name != "show" %>
+    <div class="flex">
+      <% if subscribed? %>
+        <%= link_to "Show this post", post, id: 'show_link', class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <%if subscription_present?%>
+          <%= button_to 'Unsubscribe', checkout_unsubscrib_path, method: :delete, data:{confirm: "Are you sure?"},id: 'unsub_link', class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium", remote: true %>
+        <% end %>
+      <% else %>
+        <%= button_to "Subscribe", checkout_create_path, params: { :id => post.id, :price_id => post.price_id },id: 'sub_link', class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium", remote: true %>
+      <% end %>
+      <% if admin? %>
+        <%= link_to 'Edit this post', edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <% end %>
+      </div>
+    <hr class="mt-6">
+  <% end %>
+</div>

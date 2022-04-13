@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_stripe_id: MyString
+  users: one
+  posts: one
+
+two:
+  customer_stripe_id: MyString
+  users: two
+  posts: two
