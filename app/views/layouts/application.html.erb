@@ -12,6 +12,22 @@
   </head>
 
   <body>
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+    <%# if flash.any? %>
+      <%# flash.each do |type, msg| %>
+        <%# <div> %>
+          <%#= msg %>
+        <%# </div> %>
+      <%# end %>
+    <%# end %>
+    <% if user_signed_in? %>
+      <br>
+      Logged in as <strong><%= current_user.email %></strong>.
+      <%= link_to 'Edit profile', edit_user_registration_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white font-medium" %> |
+      <%= link_to " Logout ", destroy_user_session_path, method: :delete, class: "rounded-lg py-3 px-5 bg-blue-600 text-white font-medium"  %>
+    <% end %>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
