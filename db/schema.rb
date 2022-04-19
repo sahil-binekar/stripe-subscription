@@ -12,16 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2022_04_12_071415) do
 
-  create_table "customers", charset: "utf8mb4", force: :cascade do |t|
-    t.string "customer_stripe_id"
-    t.bigint "users_id", null: false
-    t.bigint "posts_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["posts_id"], name: "index_customers_on_posts_id"
-    t.index ["users_id"], name: "index_customers_on_users_id"
-  end
-
   create_table "posts", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -56,7 +46,5 @@ ActiveRecord::Schema.define(version: 2022_04_12_071415) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "customers", "posts", column: "posts_id"
-  add_foreign_key "customers", "users", column: "users_id"
   add_foreign_key "subscriptions", "users"
 end

@@ -1,5 +1,4 @@
 class WebhooksController < ApplicationController
-  include WebhooksHelper
   skip_before_action :verify_authenticity_token
   def create
     payload = request.body.read
@@ -19,7 +18,6 @@ class WebhooksController < ApplicationController
       p e
       return
     end
-
     #Handle the errors
     begin
       # Use Stripe's library to make requests...
@@ -41,26 +39,35 @@ class WebhooksController < ApplicationController
         @user.update(:subscribed=> false)
       when 'checkout.session.completed'
         payment_object = event.data.object # contains a Stripe::PaymentIntent
-        # puts "Payment for #{payment_object['amount_total']} succeeded."
-        flash[:notice] = "Payment for #{payment_object['amount_total']} succeeded."
-        WebhooksHelper.notic_message(payment_object)
+        puts "Payment for #{payment_object['amount_total']} succeeded."
       end
+      # when 'checkout.session.completed'
+      # when 'checkout.session.completed'
+      # when 'checkout.session.completed'
+      # when 'checkout.session.completed'
+      # when 'checkout.session.completed'
     rescue Stripe::CardError => e
-      WebhooksHelper.info_message(e.error.message, e.http_status)
-      flash[:notice] = e.error.message
+      # binding.pry
+      # WebhooksHelper.info_message(e.message, e.http_status)
+      # flash.now[:error] = "#{e.message}"
     rescue Stripe::RateLimitError => e
-      flash[:notice] = e.error.message
+      # binding.pry
+      # flash.now[:error] = e.message
     rescue Stripe::InvalidRequestError => e
-      flash[:notice] = e.error.message
+      # binding.pry
+      # flash.now[:error] = e.message
     rescue Stripe::AuthenticationError => e
-      flash[:notice] = e.error.message
+      # binding.pry
+      # flash.now[:error] = e.message
     rescue Stripe::APIConnectionError => e
-      flash[:notice] = e.error.message
+      # binding.pry
+      # flash.now[:error] = e.message
     rescue Stripe::StripeError => e
-      flash[:notice] = e.error.message
+      # binding.pry
+      # flash.now[:error] = e.message
     rescue => e
-      flash[:notice] = e.error.message
+      # flash[:error] = "#{e.message}"
     end
-    render json: {message: 'success' }
+    # render json: {message: 'success' }
   end
 end

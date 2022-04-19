@@ -8,6 +8,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      gradientColorStops: theme => ({
+        'primary': '#3490dc',
+        'secondary': '#ffed4a',
+        'danger': '#e3342f',
+        }),
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },

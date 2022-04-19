@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   resources :posts
   root to: 'posts#index'
-  # resources :checkout 
+  # resources :checkout
   # do
     post 'checkout/create', to: 'checkout#create'
+    get 'checkout/success', to: 'checkout#success'
+    get 'checkout/cancel', to: 'checkout#cancel'
     delete 'checkout/unsubscrib', to: 'checkout#destroy'
   # end
   devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :webhooks, only: [:create]
 end
