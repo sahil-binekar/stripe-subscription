@@ -12,33 +12,44 @@ class CheckoutController < ApplicationController
           price: price_id,
       }],
       mode: 'subscription',
-      success_url: "your-local-host-link/checkout/success",
-      cancel_url: "your-local-host-link/checkout/cancel"
+      success_url: "https://2e6d-59-95-101-113.ngrok.io/checkout/succeed",
+      # success_url:  root_url,
+      cancel_url: "https://2e6d-59-95-101-113.ngrok.io/checkout/cancelled"
+      # cancel_url: root_url
       })
     respond_to do |format|
       format.js
-      format.html { redirect_to root_url, notice: "You are successfully subscribed!" }
+      format.html { redirect_to checkout_succeed_path(message: "You are successfully subscribed!") }
     end
   end
 
   def update
   end
 
-  def success
-    @user = current_user
+  def succeed
+    @user = current_user.name
+    @message = params[:message]
   end
 
-  def cancel
-    @user = current_user
+  def self.subscription_end(data)
+    redirect_to checkout_success_path(message: data)
+    # @user = current_user
+  end
+
+  def cancelled
+    # binding.pry
+    @user = current_user.name
+    @message = params[:message]
   end
 
   def destroy
-    # binding.pry
+    binding.pry
     @request = Stripe::Subscription.delete(current_user.subscriptions.find_by(user_id: current_user.id).plan_id)
     current_user.subscriptions.find_by(user_id: current_user.id).destroy
     respond_to do |format|
       sleep 1
-      format.html { redirect_to checkout_cancel_path, notice: "You are successfully unsubscribed!" }
+      format.html { redirect_to checkout_cancelled_path(message: "You are successfully unsubscribed!") }
+      # format.html { redirect_to webhooks_failed_path(user: current_user.name) }
     end
   end
 end
