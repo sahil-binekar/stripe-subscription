@@ -26,7 +26,7 @@ class WebhooksController < ApplicationController
         subscription_obj = event.data.object
         @user = User.find_by(customer_id: subscription_obj.customer)
         @user.update(product_id:  subscription_obj.plan.product, price_id: subscription_obj.plan.id)
-        @subscription = Subscription.create(user_id: @user.id, plan_id: subscription_obj.id)
+        @subscription = Subscription.create(user_id: @user.id, subs_id: subscription_obj.id, plan_id: subscription_obj.plan.product)
       when 'customer.subscription.updated'
         customer_obj = event.data.object
         @user = User.find_by(customer_id: customer_obj.customer)
@@ -62,7 +62,7 @@ class WebhooksController < ApplicationController
     rescue Stripe::StripeError => e
       CheckoutController.cancelled(message:  e.message)
     rescue => e
-      CheckoutController.cancelled(message:  e.message)
+      # CheckoutController.cancelled(message:  e.message)
     end
     render json: {message: 'success' }
   end

@@ -12,9 +12,9 @@ class CheckoutController < ApplicationController
           price: price_id,
       }],
       mode: 'subscription',
-      success_url: "https://2e6d-59-95-101-113.ngrok.io/checkout/succeed",
+      success_url: "https://c6bb-59-95-101-113.ngrok.io/checkout/succeed",
       # success_url:  root_url,
-      cancel_url: "https://2e6d-59-95-101-113.ngrok.io/checkout/cancelled"
+      cancel_url: "https://c6bb-59-95-101-113.ngrok.io/checkout/cancelled"
       # cancel_url: root_url
       })
     respond_to do |format|
@@ -44,8 +44,8 @@ class CheckoutController < ApplicationController
 
   def destroy
     binding.pry
-    @request = Stripe::Subscription.delete(current_user.subscriptions.find_by(user_id: current_user.id).plan_id)
-    current_user.subscriptions.find_by(user_id: current_user.id).destroy
+    @request = Stripe::Subscription.delete(current_user.subscriptions.find_by(user_id: current_user.id).subs_id)
+    Subscription.where(user_id: current_user.id, plan_id: params[:plan_id]).destroy_all
     respond_to do |format|
       sleep 1
       format.html { redirect_to checkout_cancelled_path(message: "You are successfully unsubscribed!") }

@@ -12,10 +12,10 @@
 
   <% if action_name != "show" %>
     <div class="flex space-x-4">
-      <% if subscribed? %>
+      <% if permission?(post) %>
         <%= link_to "Show this post", post, id: 'show_link', class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %> <p>&nbsp;&nbsp;</p>
         <%if subscription_present?%>
-          <%= button_to 'Unsubscribe', checkout_unsubscrib_path, method: :delete, data:{confirm: "Are you sure?"},id: 'unsub_link', class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium", remote: true %>
+          <%= button_to 'Unsubscribe', checkout_unsubscrib_path, method: :delete, data:{confirm: "Are you sure?"}, params: { :id => post.id, :plan_id => post.product_id },id: 'unsub_link', class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium", remote: true %>
         <% end %>
       <% else %>
         <%= button_to "Subscribe", checkout_create_path, params: { :id => post.id, :price_id => post.price_id },id: 'sub_link', class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium", remote: true %>
