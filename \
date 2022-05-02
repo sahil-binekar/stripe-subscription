@@ -1,0 +1,9 @@
+stripe:
+  secret: sk_test_51KiJEeSBpcfNqnClLfFUAfSU9Dqp3MfaUk408dmbFag34lxyDk1GxtxB4kMKBXzudGRmTBLozgo2oEcO3HHzlcso00cLIGJXSJ
+  public: pk_test_51KiJEeSBpcfNqnCly1cqLAGS9ZPIkIkqFgyBpkzzZTKCjNg4MwQQV5OIV8P4Iwau7Aipyd74QSyewJQR88fBnCUb00DlGriQvi
+  webhook: whsec_i:fdoklsvfjdklsxjvklxcds
+#   access_key_id: 123
+#   secret_access_key: 345
+
+# Used as the base secret for all MessageVerifiers in Rails, including the one protecting cookies.
+secret_key_base: c4f6ec7917167baba07daca002916e726a3dc4e81baa24dd33320ebddcf7cf0d0ddb12c182c4fd66bbc55b4a5a993a4977fc7a67882d6835a9eb3fa3b1cf12c0

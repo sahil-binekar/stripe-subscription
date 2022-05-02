@@ -18,7 +18,8 @@
           <%= button_to 'Unsubscribe', checkout_unsubscrib_path, method: :delete, data:{confirm: "Are you sure?"}, params: { :id => post.id, :plan_id => post.product_id },id: 'unsub_link', class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium", remote: true %>
         <% end %>
       <% else %>
-        <%= button_to "Subscribe", checkout_create_path, params: { :id => post.id, :price_id => post.price_id },id: 'sub_link', class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium", remote: true %>
+        <%= link_to "Subscribe", checkout_show_path, id: 'show_subs', class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %> <p>&nbsp;&nbsp;</p>
+        <%#= button_to "Subscribe", checkout_create_path, params: { :id => post.id, :price_id => post.price_id },id: 'sub_link', class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium", remote: true %>
       <% end %>
       <% if admin? %>
         <%= link_to 'Edit this post', edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>

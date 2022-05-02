@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # do
     post 'checkout/create', to: 'checkout#create'
     get 'checkout/succeed', to: 'checkout#succeed'
+    get 'checkout/show', to: 'checkout#show'
     get 'checkout/cancelled', to: 'checkout#cancelled'
     delete 'checkout/unsubscrib', to: 'checkout#destroy'
   # end
