@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[show edit update destroy ]
   before_action :subscribed_filter, only: :show
   before_action :admin_filter, only: %i[ new edit create update destroy ]
 
@@ -60,9 +60,12 @@ class PostsController < ApplicationController
     end
   end
 
+  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
+      binding.pry 
       @post = Post.find(params[:id])
     end
 

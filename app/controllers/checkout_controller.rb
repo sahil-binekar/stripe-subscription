@@ -12,9 +12,9 @@ class CheckoutController < ApplicationController
           price: price_id,
       }],
       mode: 'subscription',
-      success_url: "https://ac77-59-95-101-113.ngrok.io/checkout/succeed",
+      success_url: "https://62bd-59-95-101-113.ngrok.io/checkout/succeed",
       # success_url:  root_url,
-      cancel_url: "https://ac77-59-95-101-113.ngrok.io/checkout/cancelled"
+      cancel_url: "https://62bd-59-95-101-113.ngrok.io/checkout/cancelled"
       # cancel_url: root_url
       })
     respond_to do |format|
@@ -23,8 +23,7 @@ class CheckoutController < ApplicationController
     end
   end
 
-  def show
-  end
+ 
 
   def succeed
     @user = current_user.name
@@ -42,9 +41,15 @@ class CheckoutController < ApplicationController
     @message = params[:message]
   end
 
+  def plan
+    binding.pry
+    @post = Post&.find(params[:id])
+  end
+
   def destroy
-    # binding.pry
-    @request = Stripe::Subscription.delete(current_user.subscriptions.find_by(user_id: current_user.id).subs_id)
+    binding.pry
+    # @request = Stripe::Subscription.delete(current_user.subscriptions.find_by(user_id: current_user.id).subs_id)
+    @request = Stripe::Subscription.delete(current_user.subscriptions.find_by(user_id: current_user.id, plan_id: params[:plan_id]).subs_id)
     Subscription.where(user_id: current_user.id, plan_id: params[:plan_id]).destroy_all
     respond_to do |format|
       sleep 1

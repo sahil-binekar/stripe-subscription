@@ -1,0 +1,50 @@
+<div class="flex space-x-4 ...">
+  <div class="max-w-md rounded overflow-hidden shadow-lg bg-pink-200">
+    <img class="w-full" src="/assets/landscape.jpg" alt="bird">
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2 text-center">Can't Get Enough</div>
+        <p class="text-gray-700 text-center">
+        Subscription for a <strong><u>DAY</u></strong> at just 
+        </p>
+        <br>
+        <h1 class="text-center text-3xl">&#8377;9</h1>
+      </div>
+    <div class="px-6 pt-4 pb-2 flex items-center justify-center">
+    <%= button_to "Subscribe", checkout_create_path, params: { :id => @post.id, :price_id => @post.daily_price_id },id: 'sub_link', class: "rounded-lg py-3 px-5 bg-pink-500 inline-block font-medium", remote: true %>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="max-w-md rounded overflow-hidden shadow-lg bg-green-200">
+  <img class="w-full" src="/assets/book.jpg" alt="bird">
+  <div class="px-6 py-4">
+    <div class="font-bold text-xl mb-2 text-center">Pure Bliss</div>
+      <p class="text-gray-700 text-center">
+        Subscription for a <strong><u>WEEK</u></strong> at just 
+      </p>
+      <br>
+      <h1 class="text-center text-3xl">&#8377;39</h1>
+    </div>
+    <div class="px-6 pt-4 pb-2 flex items-center justify-center">
+      <%= button_to "Subscribe", checkout_create_path, params: { :id => @post.id, :price_id => @post.weekly_price_id },id: 'sub_link', class: "rounded-lg py-3 px-5 bg-green-500 inline-block font-medium", remote: true %>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="max-w-md rounded overflow-hidden shadow-lg bg-purple-200">
+  <img class="w-full" src="/assets/lake.jpg" alt="bird">
+  <div class="px-6 py-4">
+    <div class="font-bold text-xl mb-2 text-center">I'm In Heaven</div>
+      <p class="text-gray-700 text-center">
+        Subscription for a <strong><u>MONTH</u></strong> at just 
+      </p>
+      <br>
+      <h1 class="text-center text-3xl">&#8377;99</h1>
+    </div>
+    <div class="px-6 pt-4 pb-2 flex items-center justify-center">
+      <%= button_to "Subscribe", checkout_create_path, params: { :id => @post.id, :price_id => @post.monthly_price_id },id: 'sub_link', class: "rounded-lg py-3 px-5 bg-purple-500 inline-block font-medium", remote: true %>
+    </div>
+  </div>
+ </div>
