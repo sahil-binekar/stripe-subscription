@@ -16,6 +16,7 @@ Things you may want to cover:
   Used devise-tailwinded gem to design better looking login and signup pages.
   Used Mysql as primary database.
   Used rails credentials for storing the credentials and secret key, or gem dotenv is also recommended.
+  Used ngrok tunnelling service for Webhooks.
 
 * Database creation:
   For database creation change the user and password of config/database.yml file.
