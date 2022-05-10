@@ -30,5 +30,3 @@ Things you may want to cover:
 # stripe-subscription-demo
 
 
-https://user-images.githubusercontent.com/92368024/167565565-b531cdd9-8c0e-4c53-9b6b-625151e3b3ac.mp4
-
